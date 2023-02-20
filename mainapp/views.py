@@ -8,7 +8,7 @@ from pytube import YouTube,extract
 from youtube_transcript_api import YouTubeTranscriptApi
 import torch
 import json 
-from transformers import T5Tokenizer, T5ForConditionalGeneration, T5Config
+from transformers import T5Tokenizer, T5ForConditionalGeneration, T5Config,AutoTokenizer
 
 # Create your views here.
 
@@ -183,7 +183,7 @@ def video(request,moduleName,videoId):
 
 def summarise(text):
     model = T5ForConditionalGeneration.from_pretrained('t5-small')
-    tokenizer = T5Tokenizer.from_pretrained('t5-small')
+    tokenizer = AutoTokenizer.from_pretrained('t5-small')
     device = torch.device('cpu')
 
     preprocess_text = text.strip().replace("\n","")

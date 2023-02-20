@@ -199,7 +199,7 @@ def summarise(text):
                                     early_stopping=True)
 
         output = tokenizer.decode(summary_ids[0], skip_special_tokens=True)
-    except:
+    except TypeError:
         output = "Unable to generate summary currently"
     return output
 

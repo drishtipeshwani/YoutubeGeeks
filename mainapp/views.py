@@ -183,7 +183,7 @@ def video(request,moduleName,videoId):
 
 def summarise(text):
     model = T5ForConditionalGeneration.from_pretrained('t5-small')
-    tokenizer = AutoTokenizer.from_pretrained('t5-small')
+    tokenizer = T5Tokenizer.from_pretrained('t5-small')
     device = torch.device('cpu')
 
     preprocess_text = text.strip().replace("\n","")

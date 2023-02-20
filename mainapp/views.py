@@ -7,7 +7,7 @@ from .models import Module
 from pytube import YouTube,extract
 from youtube_transcript_api import YouTubeTranscriptApi
 import torch
-import json 
+import sentencepiece
 from transformers import T5Tokenizer, T5ForConditionalGeneration, T5Config,AutoTokenizer
 
 # Create your views here.

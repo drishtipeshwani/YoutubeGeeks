@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Youtube Geeks</title>
+</head>
+<body>
+    <nav class="navbar justify-content-between" style="background-color: #f7f7f7">
+      <div class="d-inline-flex align-items-center">
+        <a class="navbar-brand p-3" href='/' style="margin-left: 1rem;">
+            <img src="https://www.pngitem.com/pimgs/m/11-110995_circle-icons-computer-my-computer-round-icon-hd.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <span class="navbar-brand mb-0 h1">Youtube Geeks</span>
+          </a>
+          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#exampleModalCenter" style="font-weight:bold;">
+            <span>Create New Module</span>
+          </button>
+        </div>
+          <div class="d-inline-flex align-items-center">
+          <p class="navbar-brand mb-0 h1">Welcome {{user.username}} !!</p>
+          <a href="logout" class="btn btn-danger px-5" style="margin-right: 1rem;font-weight: bold;">Logout</a>
+        </div>
+      </nav>
+      <div class = "main-ctn" style="background-color: #EAE0DA;height:90vh;margin: 0;padding: 0;box-sizing: border-box;">
+        {% for message in messages %}
+        <div class="alert alert-info" role="alert">
+          <strong>{{ message }}</strong>
+        </div>
+        {% endfor %}
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">New Module</h5>
+      </div>
+      <form action="" method="POST">
+        {% csrf_token %}
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="title" class="form-label">Title</label>
+            <input type="text" class="form-control" name="title" placeholder="Module Title" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" name="description" placeholder="Module Description" required>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="main-ctn p-4">
+  <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+    {% for module in modules %}
+    <div class="col">
+      <div class="card w-15 h-100">
+        {% if forloop.counter|divisibleby:2 %}
+        <img class="card-img-top"
+          src="https://t3.ftcdn.net/jpg/02/77/30/98/360_F_277309825_h8RvZkoyBGPDocMtippdfe3497xTrOXO.jpg"
+          alt="Card image cap" style="height: 12rem;">
+        {% else %}
+        <img class="card-img-top"
+          src="https://img.freepik.com/premium-vector/pattern-geometric-line-circle-abstract-seamless-blue-line_60284-53.jpg?w=2000"
+          alt="Card image cap" style="height: 12rem;">
+        {% endif %}
+        <div class="card-body ">
+          <h5 class="card-title">{{ module.title }}</h5>
+          <p class="card-text">{{ module.description }}</p>
+        </div>
+        <div class="card-footer" style="background: none;border: 0;">
+          <a href="{% url 'module' module.title %}" class="btn btn-outline-dark">Open Module</a>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

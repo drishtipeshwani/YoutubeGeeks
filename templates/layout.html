@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Youtube Geeks</title>
+</head>
+<body>
+    <nav class="navbar justify-content-between" style="background-color: #f7f7f7">
+        <a class="navbar-brand p-3" href='/'>
+            <img src="https://www.pngitem.com/pimgs/m/11-110995_circle-icons-computer-my-computer-round-icon-hd.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <span class="navbar-brand mb-0 h1">Youtube Geeks</span>
+          </a>
+      </nav>
+      <div class = "main-ctn d-flex flex-column justify-content-center align-items-center" style="background-color: #EAE0DA;height:100vh;margin: 0;padding: 0;box-sizing: border-box;">
+    {% block content %} {% endblock %}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

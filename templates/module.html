@@ -1,0 +1,56 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+
+<div class="main-ctn rounded w-75 d-flex flex-column p-5" style="height:100%;margin-top:1rem;margin-bottom:1rem;background-color:white;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+  <div class="header align-self-center">
+    <h3 style="font-style: italic;">{{ title }} Module</h3>
+    <p style="font-style: italic;">{{ description }}</p>
+  </div>
+  <div class="progress-ctn mb-3">
+    <p style="color:#A7727D;font-weight: bold;font-size:large;">Your Progress : {{ completed }} / {{ total }} videos watched</p>
+  </div>
+    <div class="form-ctn mb-3">
+      <form action="" method="POST">
+        {% csrf_token %}
+      <div class="row">
+        <div class="col-8">
+          <input type="text" class="form-control" name="url" placeholder="Youtube Video URL">
+        </div>
+        <div class="col-2">
+          <button type="submit" class="btn btn-dark px-4" name="add-video">Add Video</button>
+        </div>
+      </div>
+    </form>
+    </div>
+  <div class="list-ctn">
+    <ul class="list-group">
+      {% for video in videosList %}
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-8">
+            {%  if video.isCompleted %}
+            <input class="form-check-input me-1" type="checkbox" value="" aria-label="..." disabled checked>
+            {{ video.title }}
+          </input>
+          {% else %}
+          <input class="form-check-input me-1" type="checkbox" value="" aria-label="..." disabled>
+          {{ video.title }}
+        </input>
+        {% endif %}
+          </div>
+          <div class="col-2 d-inline-flex">
+            <a href="{% url 'video' moduleName=title videoId=video.videoId %}" class="link-primary">Watch Video</a>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}

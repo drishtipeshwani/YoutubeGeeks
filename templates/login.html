@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <title>Youtube Geeks</title>
+</head>
+<body>
+  <nav class="navbar justify-content-between" style="background-color: #f7f7f7">
+    <a class="navbar-brand p-3" href='/'>
+        <img src="https://www.pngitem.com/pimgs/m/11-110995_circle-icons-computer-my-computer-round-icon-hd.png" width="30" height="30" class="d-inline-block align-top" alt="">
+        <span class="navbar-brand mb-0 h1">Youtube Geeks</span>
+      </a>
+  </nav>
+  <div class="main-ctn d-flex flex-column justify-content-center align-items-center" style="background-color: #EAE0DA;height:90vh;margin: 0;padding: 0;box-sizing: border-box;">
+    {% for message in messages %}
+  <div class="alert alert-info alert-dismissible fade show" role="alert">
+    <strong>{{ message }}</strong>
+  </div>
+  {% endfor %}
+    <div class="row align-self-center w-75 rounded p-4" style="background-color: white;box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+      <div class="col d-flex flex-column mt-5">
+        {% load static %}
+        <div class="align-self-center">
+            <img src="{% static 'illustration.png' %}" class="img-fluid" alt="Youtube Geek">
+        </div>
+    </div>
+    <div class="col d-flex flex-column justify-content-center">
+      <h3 class="align-self-center" style="font-weight:bold;">User Login</h3>
+<form action="" method="POST">
+{% csrf_token %}
+<div class="mb-3">
+  <label for="username" class="form-label">Username</label>
+  <input type="text" class="form-control" placeholder="Username" name="username">
+</div>
+   
+      <div class="mb-3">
+        <label for="inputPassword" class="form-label">Password</label>
+        <input type="password" class="form-control" id="inputPassword" name="password">
+      </div>
+      <input class="btn btn-info align-self-center p-2" type="submit" value="Log In" style="color:white;font-weight: bold;">
+</form>
+<div class="d-inline-flex mt-4">
+<p style="font-weight:500;">Don't have an account ?</p>
+<p class="mx-2" style="font-weight: 500;"><a href="signup" class="link-info">Sign Up</a></p>
+</div>
+</div>
+</div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+</body>
+</html>

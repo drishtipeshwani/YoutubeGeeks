@@ -69,6 +69,7 @@ def dashboard(request):
         return redirect('login')
     if request.method == 'POST':
       # Creating a New Module
+      currentuser = request.user
       title = request.POST['title']
       description = request.POST['description']
       videosList = []
@@ -77,12 +78,17 @@ def dashboard(request):
         messages.info(request,'Module Title Taken')
         return redirect('dashboard')
       else:
-        Module.objects.create(title=title,description=description,videosList=videosList)
+        Module.objects.create(user=currentuser,title=title,description=description,videosList=videosList)
         return redirect(reverse('module', args=(title,)))
     else:
         # Retriving all the existing modules for the database
-        modules = Module.objects.all().values()
-        return render(request,'dashboard.html',{'modules':modules})
+        try:
+            modules = Module.objects.filter(user=request.user)
+            return render(request,'dashboard.html',{'modules':modules})
+        except:
+            modules = None
+            return render(request,'dashboard.html',{'modules':modules})
+        
 
 
 def module(request,moduleName):
@@ -178,9 +184,10 @@ def video(request,moduleName,videoId):
             # Summarisation the transcript
             summary_text = summarise(transcript)
             return render(request,'video.html',{"videoObject":videoObject,"title":moduleName,"summary":summary_text})
-    
-    return render(request,'video.html',{"videoObject":videoObject,"title":moduleName})
+    else:
+        return render(request,'video.html',{"videoObject":videoObject,"title":moduleName})
 
+# Transcript summarisation function
 def summarise(text):
     output = None
     try:
